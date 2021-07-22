@@ -13,8 +13,14 @@ mail.host: 'smtp'
 # mail.username: ''
 # mail.password: ''
 # mail.use-tls: false
+# mail.use-ssl: false
 # The email address to send on behalf of
 # mail.from: 'root@localhost'
+
+# The mailing list namespace for emails sent by this Sentry server.
+# This should be a domain you own (often the same domain as the domain
+# part of the `mail.from` configuration parameter value) or `localhost`.
+# mail.list-namespace: 'localhost'
 
 # If you'd like to configure email replies, enable this.
 # mail.enable-replies: true
@@ -31,7 +37,7 @@ mail.host: 'smtp'
 # System Settings #
 ###################
 
-# If this file ever becomes compromised, it's important to regenerate your a new key
+# If this file ever becomes compromised, it's important to generate a new key.
 # Changing this value will result in all current sessions being invalidated.
 # A new key can be generated with `$ sentry config generate-secret-key`
 system.secret-key: '!!changeme!!'
@@ -55,7 +61,9 @@ system.secret-key: '!!changeme!!'
 
 filestore.backend: 'filesystem'
 filestore.options:
-  location: '/var/lib/sentry/files'
+  location: '/data/files'
+dsym.cache-path: '/data/dsym-cache'
+releasefile.cache-path: '/data/releasefile-cache'
 
 # filestore.backend: 's3'
 # filestore.options:
@@ -67,3 +75,36 @@ system.internal-url-prefix: 'http://web:9000'
 symbolicator.enabled: true
 symbolicator.options:
   url: "http://symbolicator:3021"
+
+transaction-events.force-disable-internal-project: true
+
+######################
+# GitHub Integration #
+######################
+
+# github-login.extended-permissions: ['repo']
+# github-app.id: GITHUB_APP_ID
+# github-app.name: 'GITHUB_APP_NAME'
+# github-app.webhook-secret: 'GITHUB_WEBHOOK_SECRET' # Use only if configured in GitHub
+# github-app.client-id: 'GITHUB_CLIENT_ID'
+# github-app.client-secret: 'GITHUB_CLIENT_SECRET'
+# github-app.private-key: |
+#   -----BEGIN RSA PRIVATE KEY-----
+#   privatekeyprivatekeyprivatekeyprivatekey
+#   privatekeyprivatekeyprivatekeyprivatekey
+#   privatekeyprivatekeyprivatekeyprivatekey
+#   privatekeyprivatekeyprivatekeyprivatekey
+#   privatekeyprivatekeyprivatekeyprivatekey
+#   -----END RSA PRIVATE KEY-----
+
+#####################
+# Slack Integration #
+#####################
+
+# Refer to https://develop.sentry.dev/integrations/slack/ for setup instructions.
+
+# slack.client-id: <'client id'>
+# slack.client-secret: <client secret>
+# slack.signing-secret: <signing secret>
+## If legacy-app is True use verfication-token instead of signing-secret
+# slack.verification-token: <verification token>
