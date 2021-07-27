@@ -33,6 +33,7 @@ var/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+sentry_install_log*.txt
 
 # Unit test / coverage reports
 htmlcov/
@@ -75,4 +76,14 @@ data/
 # custom Sentry config
 sentry/sentry.conf.py
 sentry/config.yml
+sentry/*.bak
 sentry/requirements.txt
+relay/credentials.json
+relay/config.yml
+symbolicator/config.yml
+geoip/GeoIP.conf
+geoip/*.mmdb
+geoip/.geoipupdate.lock
+
+# wal2json download
+postgres/wal2json
